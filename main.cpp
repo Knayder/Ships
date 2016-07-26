@@ -14,9 +14,10 @@ int main()
     window = new sf::RenderWindow( sf::VideoMode(1280, 720, 32), "Ships", sf::Style::Close | sf::Style::Titlebar, settings );
     window->setFramerateLimit(60);
 
-    MainMenu mainMenu(window);
+    MainMenu *mainMenu = new MainMenu(window);
 
-    switch(mainMenu.run())
+
+    switch(mainMenu->run())
     {
     case 1:
         std::cout << "Start" << std::endl;
@@ -26,6 +27,10 @@ int main()
         break;
     case 3:
         std::cout << "Exit" << std::endl;
+        window->close();
+        break;
+    case -1:
+        std::cout << "ERROR" << std::endl;
         window->close();
         break;
     }
