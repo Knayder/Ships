@@ -26,9 +26,19 @@ int MainMenu::run()
 {
     while(window->isOpen() && !value)
     {
+        //START------------------
+        //CALL FUNCTIONS---------
         input();
-        window->clear(sf::Color(73, 33, 33));
+        //CHECK COLLISIONS-------
+        sf::Vector2i mouse = sf::Mouse::getPosition(*window);
+        for(int i = 0; i<3; i++)
+            if( sf::Mouse::isButtonPressed(sf::Mouse::Left) && button[i].getGlobalBounds().contains(mouse.x, mouse.y) )
+                value = i+1;
 
+
+
+        //DRAW-------------------
+        window->clear(sf::Color(73, 33, 33));
         for(int i = 0; i < 3; i++)
             window->draw(button[i]);
 
